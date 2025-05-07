@@ -1,4 +1,4 @@
-# select from tables
+# this is to select from tables
 SELECT * FROM trip LIMIT 100;
 SELECT * FROM fhv_trip LIMIT 100;
 SELECT * FROM locations LIMIT 100;
@@ -6,7 +6,7 @@ SELECT * FROM company LIMIT 100;
 SELECT * FROM ubermonthlystats LIMIT 100;
 
 
-# join to show timeoftrip and company name of rides
+# join to show time of trip and company name of rides
 SELECT 
     f.FHVTripID,
     f.time_of_trip,
@@ -16,7 +16,7 @@ FROM fhv_trip f
 JOIN company c ON f.UniqueTripRef = c.UniqueTripRef
 LIMIT 100;
 
-#shows total trip count and average geographic locations dependent on base
+#aggregate function to show total trip count and average geographic locations dependent on base
 #base refers to 'dispatching base identifier' which is where the driving company car is located within the city
 SELECT 
     Base,
@@ -29,7 +29,10 @@ ORDER BY trip_count DESC
 LIMIT 10;
 
 
-#view
+#view - The FHV_TripDetails view gives a  summary of rides from the fhv_trip table, matched with the company that 
+# provided each ride using a unique trip ID. It shows when the trip happened and where it started (latitude and longitude), 
+# and which company handled it. This view shows all of the important trip details in one place, without needing to 
+# run a complicated join every time.
 CREATE OR REPLACE VIEW FHV_TripDetails AS
 SELECT 
     f.FHVTripID,
@@ -42,7 +45,10 @@ JOIN company c ON f.UniqueTripRef = c.UniqueTripRef;
 
 SELECT * FROM FHV_TripDetails LIMIT 100;
 
-#createrole
+#createrole - We created a role called group10, then we created two users and granted them only SELECT access to 
+# prevent accidental changes. This is just to make sure our data can be read safely but not edited or deleted or altered in some way.”
+
+
 CREATE ROLE group10;
 GRANT SELECT ON uber_fhv_data.* TO group10;
 
