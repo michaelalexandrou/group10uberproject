@@ -52,3 +52,12 @@ CREATE TABLE UberMonthlyStats (
     active_vehicles INT,
     trips INT
 );
+
+
+# hardest part - Hardest part was glitches in VSCode, for some reason we couldn’t connect SQL through the extension, 
+# so we had to use an earlier version of the VSCode extension MySQL. Dealing with that bug cost us a lot of time. 
+
+
+# easiest part - I’m not usually that into data or databases, but I actually enjoyed this project. My favorite part was definitely 
+# seeing how the data, the design, and the queries all came together in the end. It was cool to start with raw information and end up 
+# with something organized and usable 
